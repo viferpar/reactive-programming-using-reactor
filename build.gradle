@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("io.projectreactor:reactor-core:3.5.3")
+
+     //webclient-dependencies
+    implementation 'org.springframework:spring-webflux:6.0.7'
+    implementation 'io.projectreactor.netty:reactor-netty:1.1.5'
+    //jackson dependencies
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.14.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+
+    //log - logback
+    implementation("ch.qos.logback:logback-classic:1.4.5")
+
+    //reactor-debug-agent
+    implementation('io.projectreactor:reactor-tools:3.5.3')
+
+    //testing
+    testImplementation('org.junit.jupiter:junit-jupiter:5.5.1')
+    testImplementation("io.projectreactor:reactor-test:3.5.3")
+    testImplementation("org.mockito:mockito-core:3.2.4")
+    testImplementation("org.mockito:mockito-junit-jupiter:3.2.4")
+
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
